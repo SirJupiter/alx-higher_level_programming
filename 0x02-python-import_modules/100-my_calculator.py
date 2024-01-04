@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 from calculator_1 import add, sub, mul, div
-from sys import argv
-from sys import exit
+from sys import argv, exit
 
 
-def main():
+if __name__ == "__main__":
     arg_count = len(argv)
 
     a = int(argv[1])
@@ -27,7 +26,3 @@ def main():
         print("{} * {} = {}".format(a, b, mul(a, b)))
     elif argv[2] == '/':
         print("{} / {} = {}".format(a, b, div(a, b)))
-
-
-if __name__ == "__main__":
-    main()
