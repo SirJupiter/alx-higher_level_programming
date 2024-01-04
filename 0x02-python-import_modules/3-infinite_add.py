@@ -7,14 +7,15 @@ def main():
     if arg_count < 2:
         print(0)
 
-    if arg_count == 2:
+    elif arg_count == 2:
         print(argv[1])
 
-    addition = 0
-    for i in range(1, arg_count):
-        addition += int(argv[i])
+    else:
+        addition = 0
+        for i in range(1, arg_count):
+            addition += int(argv[i])
 
-    print(addition)
+        print(addition)
 
 
 if __name__ == "__main__":
