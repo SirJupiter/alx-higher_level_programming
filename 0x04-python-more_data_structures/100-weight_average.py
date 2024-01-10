@@ -20,3 +20,5 @@ def weight_average(my_list=[]):
     average = sum_column / weight_sum
 
     return average
+
+    # return sum(x*y for x, y in my_list) / sum(y for x, y in my_list)
