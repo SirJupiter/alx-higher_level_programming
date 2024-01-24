@@ -93,7 +93,9 @@ class Square:
 
         if type(value) is not tuple:
             raise TypeError("position must be a tuple of two integers")
-        elif (type(value[0]) is not int) or (type(value[1]) is not int):
+        elif not isinstance(value[0], int):
+            raise TypeError("position must be a tuple of two integers")
+        elif not isinstance(value[1], int):
             raise TypeError("position must be a tuple of two integers")
         elif value[0] < 0 or value[1] < 0:
             raise TypeError("position must be a tuple of two integers")
