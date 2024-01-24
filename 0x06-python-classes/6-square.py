@@ -96,7 +96,7 @@ class Square:
         elif (type(value[0]) is not int) or (type(value[1]) is not int):
             raise TypeError("position must be a tuple of two integers")
         else:
-            self.__position = int(value)
+            self.__position = value
 
     def my_print(self):
         """function prints in stdout the square with the character '#'
