@@ -24,7 +24,17 @@ case 1: common case
 
 -------------------------------------------
 
-case 8: negative numbers
+case 2: empty list
+
+>>> a = []
+>>> my_list = MyList(a)
+>>> my_list.print_sorted()
+[]
+>>>
+
+-------------------------------------------
+
+case 3: negative numbers
 
 >>> MyList = __import__('1-my_list').MyList
 >>> my_list = MyList()
