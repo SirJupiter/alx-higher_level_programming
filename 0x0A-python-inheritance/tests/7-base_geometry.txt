@@ -1,0 +1,39 @@
+Test for 7-base_geometry.py
+-----------------------------------------
+
+case 0: import
+
+>>> BaseGeometry = __import__("7-base_geometry").BaseGeometry
+>>>
+
+------------------------------------------
+
+case 1: normal case where 'value' is int and > 0
+
+>>> baseG = BaseGeometry()
+>>> baseG.integer_validator("my_int", 12)
+>>> baseG.integer_validator("width", 89)
+
+-------------------------------------------
+
+case 2: 'value' is not int
+
+>>> baseG.integer_validator("name", "John")
+Traceback (most recent call last):
+    raise TypeError(error_message)
+TypeError: name must be an integer
+>>>
+
+--------------------------------------------
+
+case 3: 'value' is <= 0
+
+>>> baseG.integer_validator("age", 0)
+Traceback (most recent call last):
+    raise ValueError(error_message)
+ValueError: age must be greater than 0
+>>> baseG.integer_validator("distance", -4)
+Traceback (most recent call last):
+    raise ValueError(error_message)
+ValueError: distance must be greater than 0
+>>>
