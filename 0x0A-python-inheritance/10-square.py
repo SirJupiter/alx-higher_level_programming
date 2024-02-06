@@ -20,3 +20,4 @@ class Square(Rectangle):
 
         # Calling parent constructor with same value for width and height
         super().__init__(size, size)
+        self.__size = size  # Private attribute
