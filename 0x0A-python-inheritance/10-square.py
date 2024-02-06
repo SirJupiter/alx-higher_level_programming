@@ -20,8 +20,3 @@ class Square(Rectangle):
 
         # Calling parent constructor with same value for width and height
         super().__init__(size, size)
-
-    def area(self):
-        """Calculate and return the area of the square."""
-
-        return super(Square, self).area()
