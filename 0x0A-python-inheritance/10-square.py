@@ -18,6 +18,7 @@ class Square(Rectangle):
             size (int): size of one side of the squar:
         """
 
+        self.integer_validator("size", size)
         # Calling parent constructor with same value for width and height
         super().__init__(size, size)
         self.__size = size  # Private attribute
