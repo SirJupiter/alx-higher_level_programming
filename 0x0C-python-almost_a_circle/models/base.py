@@ -86,9 +86,9 @@ class Base:
         """
         if dictionary and dictionary != {}:
             if cls.__name__ == "Rectangle":
-                dummy_instance = cls(3, 5)
+                dummy_instance = cls(1, 1)
             else:
-                dummy_instance = cls(3)
+                dummy_instance = cls(1)
             dummy_instance.update(**dictionary)
 
             return dummy_instance
@@ -120,7 +120,7 @@ class Base:
         """
 
         with open(f"{cls.__name__}.csv", "w", newline="") as csv_file:
-            if list_objs is None or len(list_objs) == 0:
+            if list_objs is None or list_objs == []:
                 csv_file.write([])
             else:
                 if cls.__name__ == "Rectangle":
