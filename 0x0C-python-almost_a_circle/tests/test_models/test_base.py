@@ -28,7 +28,6 @@ class TestBase_instantiation(unittest.TestCase):
 
     def test_three_bases(self):
         b1 = Base()
-        b2 = Base()
         b3 = Base()
         self.assertEqual(b1.id, b3.id - 2)
 
@@ -42,7 +41,6 @@ class TestBase_instantiation(unittest.TestCase):
 
     def test_nb_instances_after_unique_id(self):
         b1 = Base()
-        b2 = Base(12)
         b3 = Base()
         self.assertEqual(b1.id, b3.id - 1)
 
@@ -288,8 +286,6 @@ class TestBase_create(unittest.TestCase):
 
     def test_create_rectangle_original(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
-        r1_dictionary = r1.to_dictionary()
-        r2 = Rectangle.create(**r1_dictionary)
         self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(r1))
 
     def test_create_rectangle_new(self):
@@ -312,8 +308,6 @@ class TestBase_create(unittest.TestCase):
 
     def test_create_square_original(self):
         s1 = Square(3, 5, 1, 7)
-        s1_dictionary = s1.to_dictionary()
-        s2 = Square.create(**s1_dictionary)
         self.assertEqual("[Square] (7) 5/1 - 3", str(s1))
 
     def test_create_square_new(self):
