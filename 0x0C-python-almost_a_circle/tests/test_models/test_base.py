@@ -28,6 +28,7 @@ class TestBase_instantiation(unittest.TestCase):
 
     def test_three_bases(self):
         b1 = Base()
+        b2 = Base()
         b3 = Base()
         self.assertEqual(b1.id, b3.id - 2)
 
@@ -41,6 +42,7 @@ class TestBase_instantiation(unittest.TestCase):
 
     def test_nb_instances_after_unique_id(self):
         b1 = Base()
+        b2 = Base(12)
         b3 = Base()
         self.assertEqual(b1.id, b3.id - 1)
 
@@ -288,7 +290,7 @@ class TestBase_create(unittest.TestCase):
         r1 = Rectangle(3, 5, 1, 2, 7)
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
-        self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(r2))
+        self.assertEqual("[Rectangle] (7) 1/2 - 3/5", str(r1))
 
     def test_create_rectangle_new(self):
         r1 = Rectangle(3, 5, 1, 2, 7)
@@ -312,7 +314,7 @@ class TestBase_create(unittest.TestCase):
         s1 = Square(3, 5, 1, 7)
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
-        self.assertEqual("[Square] (7) 5/1 - 3", str(s2))
+        self.assertEqual("[Square] (7) 5/1 - 3", str(s1))
 
     def test_create_square_new(self):
         s1 = Square(3, 5, 1, 7)
@@ -367,7 +369,7 @@ class TestBase_load_from_file(unittest.TestCase):
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file([r1, r2])
         output = Rectangle.load_from_file()
-        self.assertTrue(all(type(obj) is Rectangle for obj in output))
+        self.assertTrue(all(type(obj) == Rectangle for obj in output))
 
     def test_load_from_file_first_square(self):
         s1 = Square(5, 1, 3, 3)
@@ -388,7 +390,7 @@ class TestBase_load_from_file(unittest.TestCase):
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file([s1, s2])
         output = Square.load_from_file()
-        self.assertTrue(all(type(obj) is Square for obj in output))
+        self.assertTrue(all(type(obj) == Square for obj in output))
 
     def test_load_from_file_no_file(self):
         output = Square.load_from_file()
@@ -511,7 +513,7 @@ class TestBase_load_from_file_csv(unittest.TestCase):
         r2 = Rectangle(2, 4, 5, 6, 2)
         Rectangle.save_to_file_csv([r1, r2])
         output = Rectangle.load_from_file_csv()
-        self.assertTrue(all(type(obj) is Rectangle for obj in output))
+        self.assertTrue(all(type(obj) == Rectangle for obj in output))
 
     def test_load_from_file_csv_first_square(self):
         s1 = Square(5, 1, 3, 3)
@@ -532,7 +534,7 @@ class TestBase_load_from_file_csv(unittest.TestCase):
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file_csv([s1, s2])
         output = Square.load_from_file_csv()
-        self.assertTrue(all(type(obj) is Square for obj in output))
+        self.assertTrue(all(type(obj) == Square for obj in output))
 
     def test_load_from_file_csv_no_file(self):
         output = Square.load_from_file_csv()
