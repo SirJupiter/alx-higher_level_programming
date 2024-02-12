@@ -4,6 +4,7 @@
 import json
 import csv
 import turtle
+from random import choice
 
 
 class Base:
@@ -158,41 +159,50 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares):
-        """Draw Rectangles and Squares using the turtle module.
+        """Draws a list of rectangle and squares
 
-        Args:
-            list_rectangles (list): A list of Rectangle objects to draw.
-            list_squares (list): A list of Square objects to draw.
+        Colors used are from pantone color palette 2015
         """
-        turt = turtle.Turtle()
-        turt.screen.bgcolor("#b7312c")
-        turt.pensize(3)
-        turt.shape("turtle")
+        t = turtle.Turtle()
+        t.hideturtle()
+        screen = turtle.Screen()
+        screen.bgcolor('#006994')
+        color_list = [
+                '#9dc6d8',
+                '#00b3ca',
+                '#7dd0b6',
+                '#1d4e89',
+                '#d2b29b',
+                '#e38690',
+                '#f69256',
+                '#ead98b',
+                '#965251',
+                '#c6cccc'
+                ]
+        for rectangle in list_rectangles:
+            t.color(choice(color_list))
+            t.penup()
+            t.goto(rectangle.x * 3, rectangle.y * 3)
+            t.pendown()
+            t.begin_fill()
+            for _ in range(2):
+                t.fd(rectangle.width)
+                t.right(90)
+                t.fd(rectangle.height)
+                t.right(90)
+            t.end_fill()
+            t.penup()
 
-        turt.color("#ffffff")
-        for rect in list_rectangles:
-            turt.showturtle()
-            turt.up()
-            turt.goto(rect.x, rect.y)
-            turt.down()
-            for i in range(2):
-                turt.forward(rect.width)
-                turt.left(90)
-                turt.forward(rect.height)
-                turt.left(90)
-            turt.hideturtle()
+        for square in list_squares:
+            t.color(choice(color_list))
+            t.penup()
+            t.goto(square.x * 3, square.y * 3)
+            t.pendown()
+            t.begin_fill()
+            for _ in range(4):
+                t.fd(square.size)
+                t.right(90)
+            t.end_fill()
+            t.penup()
 
-        turt.color("#b5e3d8")
-        for sq in list_squares:
-            turt.showturtle()
-            turt.up()
-            turt.goto(sq.x, sq.y)
-            turt.down()
-            for i in range(2):
-                turt.forward(sq.width)
-                turt.left(90)
-                turt.forward(sq.height)
-                turt.left(90)
-            turt.hideturtle()
-
-        turtle.exitonclick()
+        turtle.done()
