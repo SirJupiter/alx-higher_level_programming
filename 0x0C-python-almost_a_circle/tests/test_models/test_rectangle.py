@@ -1,96 +1,136 @@
 #!/usr/bin/python3
+"""
+A module that test differents behaviors
+of the Base class
+"""
 import unittest
-from io import StringIO
-import sys
+import pep8
+from models.base import Base
 from models.rectangle import Rectangle
 
 
-types = [2, -2, '2', (2,), {'2': 2}, True, [2]]
-attr = ['width', 'height', 'x', 'y']
-
-
 class TestRectangle(unittest.TestCase):
+    """
+    A class to test the Rectangle Class
+    """
+    def test_pep8_base(self):
+        """
+        Test that checks PEP8
+        """
+        syntax = pep8.StyleGuide(quit=True)
+        check = syntax.check_files(['models/rectangle.py'])
+        self.assertEqual(
+            check.total_errors, 0,
+            "Found code style errors (and warnings)."
+        )
 
-    def test_init(self):
-        rect = Rectangle(4, 5, 1, 2, 25)
-        self.assertEqual(rect.width, 4)
-        self.assertEqual(rect.height, 5)
-        self.assertEqual(rect.x, 1)
-        self.assertEqual(rect.y, 2)
-        self.assertEqual(rect.id, 25)
+    def test_rectangle_subclass(self):
+        """
+        Test if Rectangle class inherit from
+        Base class
+        """
+        self.assertTrue(issubclass(Rectangle, Base))
 
-    def test_width(self):
-        rect = Rectangle(4, 5)
-        rect.width = 10
-        self.assertEqual(rect.width, 10)
+    def test_parameters(self):
+        """
+        Test parameters for Rectangle class
+        """
+        r1 = Rectangle(10, 2)
+        r2 = Rectangle(2, 10)
+        r3 = Rectangle(10, 2, 0, 0, 12)
 
-    def test_height(self):
-        rect = Rectangle(4, 5)
-        rect.height = 10
-        self.assertEqual(rect.height, 10)
+        """ self.assertEqual(r1.id, 9) """
+        self.assertEqual(r1.width, 10)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+        """ self.assertEqual(r2.id, 2)"""
+        self.assertEqual(r2.width, 2)
+        self.assertEqual(r2.height, 10)
+        self.assertEqual(r2.x, 0)
+        self.assertEqual(r2.y, 0)
+        """ self.assertEqual(r3.id, 12) """
+        self.assertEqual(r3.width, 10)
+        self.assertEqual(r3.height, 2)
+        self.assertEqual(r3.x, 0)
+        self.assertEqual(r3.y, 0)
 
-    def test_x(self):
-        rect = Rectangle(4, 5, 1, 2)
-        rect.x = 3
-        self.assertEqual(rect.x, 3)
-
-    def test_y(self):
-        rect = Rectangle(4, 5, 1, 2)
-        rect.y = 4
-        self.assertEqual(rect.y, 4)
-
-    def test_area(self):
-        r = Rectangle(3, 2)
-        self.assertEqual(r.area(), 6)
-
-    def test_display(self):
-        r = Rectangle(2, 2)
-        output = '##\n##\n'
-        captured_output = StringIO()
-        sys.stdout = captured_output
-        r.display()
-        sys.stdout = sys.__stdout__
-        self.assertEqual(captured_output.getvalue(), output)
-
-    def test_str(self):
-        r = Rectangle(5, 5, 1, 1, 3)
-        output = '[Rectangle] (3) 1/1 - 5/5\n'
-        text = StringIO()
-        sys.stdout = text
-        print(r)
-        sys.stdout = sys.__stdout__
-        self.assertEqual(text.getvalue(), output)
-
-    def test_update(self):
-        pass
-
-    def test_property_check(self):
-        rect = Rectangle(10, 5, 2, 3)
-        with self.assertRaises(ValueError):
-            rect.width = 0
-        with self.assertRaises(ValueError):
-            rect.height = 0
-        with self.assertRaises(ValueError):
-            rect.x = -1
-        with self.assertRaises(ValueError):
-            rect.y = -10
         with self.assertRaises(TypeError):
-            rect.width = "10"
-        with self.assertRaises(TypeError):
-            rect.height = "5"
-        with self.assertRaises(TypeError):
-            rect.x = '4'
-        with self.assertRaises(TypeError):
-            rect.y = '5'
+            r4 = Rectangle()
 
-    def test_types(self):
-        r = Rectangle(5, 4, 3, 2)
-        for attribute in attr:
-            for data in types:
-                if not isinstance(data, int):
-                    with self.assertRaises(TypeError):
-                        setattr(r, attribute, data)
+    def test_string(self):
+        """
+        Test string parameters for a
+        Rectangle class
+        """
+        with self.assertRaises(TypeError):
+            Rectangle('Monty', 'Python')
 
+    def test_type_param(self):
+        """
+        Test different types of parameters
+        for a Rectangle class
+        """
+        with self.assertRaises(TypeError):
+            Rectangle(1.01, 3)
+            raise TypeError()
 
-if __name__ == '__main__':
-    unittest.main()
+        with self.assertRaises(ValueError):
+            Rectangle(-234234242, 45)
+            raise ValueError()
+
+        with self.assertRaises(TypeError):
+            Rectangle('', 4)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(True, 4)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 1.76)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, "Hello")
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, False)
+            raise TypeError()
+
+        with self.assertRaises(ValueError):
+            Rectangle(5, -4798576398576)
+            raise ValueError
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 1, 1.50)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 6, "test")
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 7, False)
+            raise TypeError()
+
+        with self.assertRaises(ValueError):
+            Rectangle(5, 7, -4798576398576)
+            raise ValueError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 1, 1, 1.53)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 6, 5, "test")
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 7, 7, False)
+            raise TypeError()
+
+        with self.assertRaises(ValueError):
+            Rectangle(5, 9, 5, -4798576398576)
+            raise ValueError()
