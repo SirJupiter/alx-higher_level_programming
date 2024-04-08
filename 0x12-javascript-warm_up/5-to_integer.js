@@ -7,7 +7,7 @@ if (!process.argv[2]) {
 
 const num = Math.floor(parseFloat(process.argv[2], 10));
 // Check if the input is a valid number
-if (isNaN(num)) {
+if (isNaN(num) || Number.isNaN(num) === true) {
   console.log('Not a number');
   return;
 }
