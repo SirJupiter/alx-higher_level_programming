@@ -8,7 +8,6 @@ function add(a, b) {
 
 if (!process.argv[2] || !process.argv[3]) {
   console.log('NaN');
-  return;
 }
 
 const numOne = parseInt(process.argv[2], 10);
