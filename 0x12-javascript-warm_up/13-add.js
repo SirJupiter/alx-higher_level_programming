@@ -1,5 +1,5 @@
 #!/usr/bin/node
 
-const add = function (x, y) { return x + y };
-
-module.exports = add;
+exports.add = function (x, y) {
+  return x + y;
+};
