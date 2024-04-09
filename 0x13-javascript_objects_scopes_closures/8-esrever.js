@@ -2,8 +2,12 @@
 
 exports.esrever = function (list) {
   if (Array.isArray(list)) {
-    const arrayCopy = [...list];
+    const arrayCopy = [];
 
-    return arrayCopy.reverse();
+    for (let i = list.length - 1; i >= 0; i--) {
+      arrayCopy.push(list[i]);
+    }
+
+    return arrayCopy;
   }
 };
