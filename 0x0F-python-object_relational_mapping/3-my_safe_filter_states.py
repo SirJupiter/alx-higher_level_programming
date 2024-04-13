@@ -22,7 +22,7 @@ def main():
 
         cursor = db_config.cursor()
 
-        query = "SELECT * FROM states WHERE name LIKE BINARY %s \
+        query = "SELECT * FROM states WHERE name LIKE BINARY %s\
             ORDER BY id ASC;"
 
         try:
