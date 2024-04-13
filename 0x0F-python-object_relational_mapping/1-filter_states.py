@@ -20,7 +20,7 @@ def main():
 
         cursor = db_config.cursor()
 
-        query = "SELECT * FROM states WHERE UPPER(name) LIKE 'N%'"
+        query = "SELECT * FROM states WHERE name STARTING WITH 'N'"
 
         try:
             cursor.execute(query)
@@ -28,6 +28,7 @@ def main():
             print("An error occurred: {}".format(e))
         else:
             result = cursor.fetchall()
+
             for row in result:
                 print(row)
 
