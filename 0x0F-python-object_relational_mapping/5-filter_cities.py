@@ -38,10 +38,7 @@ def main():
         else:
             result = cursor.fetchall()
 
-            for row in result:
-                print(*row, end='')
-                if result[len(result) - 1] != row:
-                    print(", ", end='')
+            print(", ".join([res[0] for res in result]))
 
     except MySQLdb.Error as e:
         print(f"Error: Could not connect to database ({e})")
