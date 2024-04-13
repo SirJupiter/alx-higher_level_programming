@@ -24,7 +24,7 @@ def main():
         query = """
         SELECT cities.name
         FROM cities
-        INNER JOIN states ON cities.state_id = states.id
+        JOIN states ON cities.state_id = states.id
         WHERE states.name = %s
         ORDER BY cities.id ASC;
         """
