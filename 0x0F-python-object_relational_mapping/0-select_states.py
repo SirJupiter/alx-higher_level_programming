@@ -5,14 +5,15 @@ import sys
 
 
 def main():
-    args_list = sys.argv
+    """Main function"""
 
     try:
         db_config = MySQLdb.connect(
             host='localhost',
-            user=args_list[1],
-            passwd=args_list[2],
-            db=args_list[3]
+            port=3306,
+            user=sys.argv[1],
+            passwd=sys.argv[2],
+            db=sys.argv[3]
         )
 
         cursor = db_config.cursor()
