@@ -7,33 +7,26 @@ import sys
 def main():
     """Main function"""
 
-    try:
-        db_config = MySQLdb.connect(
-            host='localhost',
-            port=3306,
-            user=sys.argv[1],
-            passwd=sys.argv[2],
-            db=sys.argv[3]
-        )
+    db_config = MySQLdb.connect(
+        host='localhost',
+        port=3306,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3]
+    )
 
-        cursor = db_config.cursor()
-        query = "SELECT * FROM states ORDER BY id ASC;"
-        try:
-            cursor.execute(query)
-        except Exception as e:
-            print("Error executing query: {}".format(e))
-        else:
-            result = cursor.fetchall()
-            for row in result:
-                print(row)
+    cursor = db_config.cursor()
+    query = "SELECT * FROM states ORDER BY id ASC;"
 
-    except MySQLdb.Error as err:
-        print("MySQL Error {:d}: {:s}".format(err.args[0], err.args[1]))
+    cursor.execute(query)
 
-    finally:
-        # Closing connection and cursor
-        cursor.close()
-        db_config.close()
+    result = cursor.fetchall()
+    for row in result:
+        print(row)
+
+    # Closing connection and cursor
+    cursor.close()
+    db_config.close()
 
 
 if __name__ == "__main__":
