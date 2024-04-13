@@ -26,7 +26,7 @@ def main():
             ORDER BY id ASC;"
 
         try:
-            cursor.execute(query, [sys.argv[4]])
+            cursor.execute(query, (sys.argv[4],))
         except MySQLdb.Error as err:
             print("An error occurred: {}".format(err))
         else:
