@@ -19,9 +19,9 @@ def main():
 
         cursor = db_config.cursor()
 
-        query = "SELECT ROW_NUMBER() OVER (ORDER BY states.id) \
-            AS r, cities.name, states.name FROM cities INNER JOIN states \
-                ON cities.state_id = states.id ORDER BY cities.id ASC;"
+        query = "SELECT cities.id, cities.name, states.name FROM cities \
+            INNER JOIN states ON cities.state_id = states.id \
+                ORDER BY cities.id ASC;"
 
         try:
             cursor.execute(query)
