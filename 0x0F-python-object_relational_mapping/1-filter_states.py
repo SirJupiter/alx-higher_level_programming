@@ -20,7 +20,7 @@ def main():
 
         cursor = db_config.cursor()
 
-        query = "SELECT * FROM states WHERE name LIKE 'N%'"
+        query = "SELECT * FROM states WHERE UPPER(name) LIKE 'N%'"
 
         try:
             cursor.execute(query)
