@@ -25,7 +25,7 @@ def main():
         SELECT cities.name
         FROM cities
         INNER JOIN states ON cities.state_id = states.id
-        WHERE cities.name = %s
+        WHERE states.name = %s
         ORDER BY cities.id ASC;
         """
 
@@ -38,9 +38,9 @@ def main():
         else:
             result = cursor.fetchall()
             for row in result:
-                print(row)
+                print(row[0])
                 if result[len(result) - 1] != row:
-                    print(row, end=', ')
+                    print(row[0], end=', ')
 
     except MySQLdb.Error as e:
         print(f"Error: Could not connect to database ({e})")
