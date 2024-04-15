@@ -17,6 +17,6 @@ session = Session(bind=engine)
 result = session.query(State.id, State.name).all()
 
 for row in result:
-    print(f'{row.id}: {row.name}')
+    print(f'{row[0]}: {row[1]}')
 # res = [f"{row[0]}: {row[1]}" for row in result]
 # print("\n".join(res))
