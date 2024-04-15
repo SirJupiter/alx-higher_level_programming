@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     session = Session(bind=engine)
 
-    new_record = State(name=u'Louisiana')
+    new_record = State(name='Louisiana')
 
     try:
         # Add record to the database
