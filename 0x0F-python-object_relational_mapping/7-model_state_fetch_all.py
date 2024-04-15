@@ -11,8 +11,8 @@ if __name__ == "__main__":
     engine = create_engine(
         f'mysql+mysqldb://{argv[1]}:{argv[2]}@localhost/{argv[3]}')
 
-    Session = sessionmaker()
-    session = Session(bind=engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
     result = session.query(State).order_by(State.id).all()
 

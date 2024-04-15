@@ -7,14 +7,13 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
 
-engine = create_engine(
-    f'mysql+mysqldb://{argv[1]}:{argv[2]}@localhost/argv[3]')
+if __name__ == "__main__":
+    engine = create_engine(
+        f'mysql+mysqldb://{argv[1]}:{argv[2]}@localhost/{argv[3]}')
 
-Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-Session = sessionmaker()
-session = Session()
+    result = session.query(State).first()
 
-result = session.query(State).first()
-
-
+    print(f'{result.id}: {result.name}')
