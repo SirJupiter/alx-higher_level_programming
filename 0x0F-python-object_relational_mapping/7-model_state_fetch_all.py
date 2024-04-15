@@ -20,6 +20,6 @@ if __name__ == "__main__":
     result = session.query(State).order_by(State.id).all()
 
     for row in result:
-        print(f'{row[0]}: {row[1]}')
+        print(f'{row.id}: {row.name}')
     # res = [f"{row[0]}: {row[1]}" for row in result]
     # print("\n".join(res))
