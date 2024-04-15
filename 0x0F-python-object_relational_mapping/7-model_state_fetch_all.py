@@ -14,7 +14,7 @@ Base.metadata.create_all(bind=engine)
 Session = sessionmaker()
 session = Session(bind=engine)
 
-result = session.query(State.id, State.name).all()
+result = session.query(State).order_by(State.id).all()
 
 for row in result:
     print(f'{row[0]}: {row[1]}')
