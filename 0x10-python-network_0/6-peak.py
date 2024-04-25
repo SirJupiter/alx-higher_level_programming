@@ -13,10 +13,10 @@ def find_peak(list_of_integers):
     if len(list_of_integers) == 0:
         return None
 
-    num_max = list_of_integers[0]
+    max_index = 0
 
     for i in range(1, len(list_of_integers)):
-        if list_of_integers[i] > num_max:
-            num_max = list_of_integers[i]
+        if list_of_integers[i] > list_of_integers[max_index]:
+            max_index = i
 
-    return num_max
+    return list_of_integers[max_index]
