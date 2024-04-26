@@ -16,7 +16,7 @@ def main():
     if argv[2]:
         data = {'email': argv[2]}
 
-    req = requests.post(url=url, params=data)
+    req = requests.post(url=url, data=data)
 
     print(req.text)
 
