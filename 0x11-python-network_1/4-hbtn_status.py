@@ -10,8 +10,8 @@ def main():
     req = requests.get(url='https://alx-intranet.hbtn.io/status')
 
     print('Body response:')
-    print(f'\t- type: {type(req.reason)}')
-    print(f'\t- content: {req.reason}')
+    print(f'\t- type: {type(req.text)}')
+    print(f'\t- content: {req.text}')
 
 
 if __name__ == "__main__":
