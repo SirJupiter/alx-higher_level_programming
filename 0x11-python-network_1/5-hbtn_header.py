@@ -14,7 +14,7 @@ def main():
     url = argv[1]
 
     req = requests.get(url=url)
-    response = req.headers['X-Request-Id']
+    response = req.headers.get('X-Request-Id')
 
     print(response)
 
