@@ -30,7 +30,7 @@ def main():
         print(body)
 
     except urllib.error.URLError as e:
-        print(f"Error accessing {url}: {e}")
+        print(f"Error accessing {url}: {e.reason}")
 
 
 if __name__ == "__main__":
