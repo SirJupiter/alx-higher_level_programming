@@ -14,10 +14,10 @@ def main():
 
     try:
         res = requests.get(url=url)
-        res.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        if e.status_code >= 400:
-            print(f'Error code: {e.status_code}')
+        status_code = res.status_code
+    except requests.exceptions.RequestException as _:
+        if status_code >= 400:
+            print(f'Error code: {status_code}')
         else:
             pass
 
