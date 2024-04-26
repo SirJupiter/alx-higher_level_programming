@@ -18,7 +18,7 @@ def main():
 
     req = requests.post(url=url, params=data)
 
-    print(req)
+    print(req.text)
 
 
 if __name__ == "__main__":
