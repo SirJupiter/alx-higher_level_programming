@@ -22,7 +22,7 @@ def main():
 
     if response_type == 'application/json':
         res = response.json()
-        if res and res.id and res.name:
+        if res and res.get('id') and res.get('name'):
             print(f'[{res.id}] {res.name}')
         else:
             print('No result')
