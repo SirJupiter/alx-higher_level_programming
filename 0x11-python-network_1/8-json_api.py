@@ -7,7 +7,7 @@ from sys import argv
 import requests
 
 
-def Main():
+def main():
     """Main function"""
 
     url = 'http://0.0.0.0:5000/search_user'
@@ -28,4 +28,4 @@ def Main():
 
 
 if __name__ == "__main__":
-    Main()
+    main()
