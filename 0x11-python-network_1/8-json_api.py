@@ -18,18 +18,14 @@ def main():
 
     response = requests.post(url=url, data={'q': q})
 
-    response_type = response.headers.get('Content-Type')
-
-    if response_type == 'application/json':
+    try:
         res = response.json()
-        if res and res.id and res.name:
-            the_id = res.get('id')
-            the_name = res.get('name')
-            print(f'[{the_id}] {the_name}')
+        if res == {}:
+            print("No result")
         else:
-            print('No result')
-    else:
-        print('Not a valid JSON')
+            print(f"[{res.get('id')}] {res.get('name')}")
+    except ValueError:
+        print("Not a valid JSON")
 
 
 if __name__ == "__main__":
