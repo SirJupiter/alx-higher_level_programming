@@ -23,7 +23,7 @@ def main():
         if res == {}:
             print("No result")
         else:
-            print(f"[{res.id}] {res.name}")
+            print(f"[{res.get('id')}] {res.get('name')}")
     except ValueError:
         print("Not a valid JSON")
 
