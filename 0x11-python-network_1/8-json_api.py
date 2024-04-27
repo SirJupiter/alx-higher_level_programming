@@ -18,11 +18,14 @@ def main():
 
     response = requests.post(url=url, data={'q': q})
 
-    if response.status_code == 204:
-        print('No result')
-    elif response.status_code == 200:
-        json_response = response.json()
-        print(f'[{json_response[0]["id"]}] {json_response[0]["name"]}')
+    response_type = response.headers.get('Content-Type')
+
+    if response_type == 'application/json':
+        res = response.json()
+        if res and res.id and res.name:
+            print(f'[{res.id}] {res.name}')
+        else:
+            print('No result')
     else:
         print('Not a valid JSON')
 
