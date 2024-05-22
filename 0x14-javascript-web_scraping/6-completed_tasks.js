@@ -10,16 +10,16 @@ request.get(url, (error, response, body) => {
   } else {
     const data = JSON.parse(body);
 
-    let count = 0;
     let result = {};
 
-    for (let i = 1; i <= 10; i++) {
-      for (const item of data) {
-        if (item.userId == i && item.completed == true) count++;
+    for (const item of data) {
+      if (item.completed) {
+        if (!result[item.userId]) {
+          result[`${item.userId}`] = 1;
+        } else {
+          result[`${item.userId}`] += 1;
+        }
       }
-
-      result[`${i}`] = count;
-      count = 0;
     }
 
     console.log(result);
