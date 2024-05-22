@@ -8,6 +8,7 @@ request.get(url, (error, response, body) => {
   if (error) {
     console.log(error);
   } else {
+    // console.log(body);
     const data = JSON.parse(body);
 
     let result = {};
@@ -15,9 +16,9 @@ request.get(url, (error, response, body) => {
     for (const item of data) {
       if (item.completed) {
         if (!result[item.userId]) {
-          result[`${item.userId}`] = 1;
+          result[item.userId] = 1;
         } else {
-          result[`${item.userId}`] += 1;
+          result[item.userId] += 1;
         }
       }
     }
